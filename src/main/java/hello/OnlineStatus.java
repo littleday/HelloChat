@@ -1,4 +1,4 @@
-package main.HelloServer;
+package main.java.hello;
 
 import java.net.Socket;
 import java.util.*;

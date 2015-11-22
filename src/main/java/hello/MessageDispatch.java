@@ -1,4 +1,4 @@
-package main.HelloServer;
+package main.java.hello;
 
 import java.io.IOException;
 import java.io.PrintWriter;
