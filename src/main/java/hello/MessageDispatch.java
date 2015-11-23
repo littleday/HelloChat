@@ -6,7 +6,7 @@ import java.net.Socket;
 import java.util.Set;
 
 /**
- * Created by Yuyu on 11/21/15.
+ * Created by Yuwen on 11/21/15.
  */
 public class MessageDispatch {
     private OnlineStatus onlineStatus;

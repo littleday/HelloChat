@@ -8,8 +8,10 @@ telnet IP PORT
 ```
 2. The following commands are supported:
 ```
+/help
 /rooms
 /join room_name
+/names
 /leave
 /quit
 ```

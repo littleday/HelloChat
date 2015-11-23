@@ -5,7 +5,7 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Created by Yuyu on 11/21/15.
+ * Created by Yuwen on 11/21/15.
  */
 public class OnlineStatus {
     private Map<Socket, String> sockets = new ConcurrentHashMap<Socket, String>();
