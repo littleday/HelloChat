@@ -83,4 +83,27 @@ public class MessageDispatch {
             }
         }).start();
     }
+
+    public void sendMessageToSingle(String sender, String receiver, String message, PrintWriter s_pw){
+        final String s = sender;
+        final String r = receiver;
+        final String m = message;
+        final PrintWriter p = s_pw;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Socket socket = onlineStatus.getUsers().get(r);
+                    if (socket != null && !socket.isClosed()) {
+                        PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
+                        pw.println("You got a new private message from " + s + ": " + m);
+                    }else {
+                        p.println("The user is not existed or online!");
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
 }

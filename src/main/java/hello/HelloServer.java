@@ -26,6 +26,7 @@ public class HelloServer {
                     ServerHandler conn_c = new ServerHandler(server, onlineStatus);
                     Thread t = new Thread(conn_c);
                     t.start();
+                    System.out.println("A new socket is added: " + server.getLocalAddress().toString());
                 }
             }
 

@@ -36,19 +36,9 @@ public class ServerHandler implements Runnable {
             while (command != null){
                 command.trim();
                 if (command.equals("/help")){
-                    pw.println("XYZ Chat Room");
-                    pw.println("We provide the following operations: ");
-                    pw.println("/rooms: List current rooms.");
-                    pw.println("/join: Join or create a room.");
-                    pw.println("/names: List members in current room.");
-                    pw.println("/leave: Leave the current room.");
-                    pw.println("/quit: Close the connection.");
+                    printHelper(pw);
                 }else if (command.equals("/rooms")){
-                    pw.println("Active rooms are:");
-                    for (String roomName : onlineStatus.getRoomAndUsers().keySet()){
-                        pw.println("* " + roomName + "(" + onlineStatus.getRoomAndUsers().get(roomName).size() + ")");
-                    }
-                    pw.println("end of list.");
+                    printRoomDetails(pw);
                 }else if(command.startsWith("/join ")){
                     if (room == null) {
                         room = command.substring(6).trim();
@@ -65,6 +55,17 @@ public class ServerHandler implements Runnable {
                         room = null;
                     }else{
                         pw.println("You are not in any room now!");
+                    }
+                }else if (command.startsWith("/ping")) {
+                    command = command.substring(6).trim();
+                    // First space index
+                    int idx = command.indexOf(" ");
+                    if (idx == -1)
+                        pw.println("Please ping someone using the following format: /ping user1 message");
+                    else {
+                        String receiver = command.substring(0, idx);
+                        String message = command.substring(idx+1);
+                        messageDispatch.sendMessageToSingle(name, receiver, message, pw);
                     }
                 }else if (command.equals("/quit")){
                     if (room != null)
@@ -107,5 +108,24 @@ public class ServerHandler implements Runnable {
                 pw.println("* " + member);
         }
         pw.println("end of list");
+    }
+
+    public void printHelper(PrintWriter pw){
+        pw.println("XYZ Chat Room");
+        pw.println("We provide the following operations: ");
+        pw.println("/rooms: List current rooms.");
+        pw.println("/join: Join or create a room.");
+        pw.println("/ping: Ping someone private message.");
+        pw.println("/names: List members in current room.");
+        pw.println("/leave: Leave the current room.");
+        pw.println("/quit: Close the connection.");
+    }
+
+    public void printRoomDetails(PrintWriter pw){
+        pw.println("Active rooms are:");
+        for (String roomName : onlineStatus.getRoomAndUsers().keySet()){
+            pw.println("* " + roomName + "(" + onlineStatus.getRoomAndUsers().get(roomName).size() + ")");
+        }
+        pw.println("end of list.");
     }
 }

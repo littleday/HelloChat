@@ -11,7 +11,10 @@ telnet IP PORT
 /help
 /rooms
 /join room_name
+/ping user_name your words
 /names
 /leave
 /quit
 ```
+3. The current server is running on IP: `159.203.255.233` PORT `9399`
+Welcome to open your terminal and play the HelloChat now!
