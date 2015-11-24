@@ -3,6 +3,7 @@ package main.java.hello;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Date;
 
 /**
  * Created by Yuwen on 11/19/15.
@@ -26,7 +27,8 @@ public class HelloServer {
                     ServerHandler conn_c = new ServerHandler(server, onlineStatus);
                     Thread t = new Thread(conn_c);
                     t.start();
-                    System.out.println("A new socket is added: " + server.getLocalAddress().toString());
+                    // Add log to output
+                    System.out.println("A new socket is added: " + server.getRemoteSocketAddress().toString() + " at " + new Date().toString());
                 }
             }
 
