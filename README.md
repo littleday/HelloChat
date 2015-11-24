@@ -16,5 +16,9 @@ telnet IP PORT
 /leave
 /quit
 ```
-3. The current server is running on IP: `159.203.255.233` PORT `9399`
+3. Test Server
+```
+The current test server is running on 159.203.255.233.
+The port is 9399.
 Welcome to open your terminal and play the HelloChat now!
+```
